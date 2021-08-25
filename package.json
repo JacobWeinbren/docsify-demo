@@ -1,5 +1,5 @@
 {
-  "name": "docsify-codepen",
+  "name": "docsify-demo",
   "version": "1.0.0",
   "description": "Plugin for Docsify that adds a preview of your component",
   "main": "dist/index.js",
