@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@weavedev/lit-fontawesome": "^0.3.2",
+    "clipboard-polyfill": "^3.0.3",
     "docsify-cli": "^4.4.3",
     "esbuild": "^0.12.22",
     "esbuild-sass-plugin": "^1.5.2",

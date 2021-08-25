@@ -1,5 +1,10 @@
 import $ from 'jquery/dist/jquery.slim.js';
 import './style.scss';
+import * as clipboard from 'clipboard-polyfill/text';
+
+function copy(text) {
+    clipboard.writeText(text);
+}
 
 //For icons
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
@@ -17,6 +22,7 @@ export function docsifyDemo(hook, vm) {
     hook.afterEach(function (html, next) {
         //Scans page and adds demo tags
         var doc = $('<div/>').html(html);
+        var codeId = 'demo_code_' + count;
 
         $(doc)
             .find('pre[data-lang="html preview"]')
@@ -27,12 +33,9 @@ export function docsifyDemo(hook, vm) {
                     .replace(/'/g, '&apos;');
 
                 var content = $(this)[0].outerHTML;
-                var codeId = 'demo_code_' + count;
                 var toggleId = 'demo_toggle_' + count;
                 var previewId = 'demo_preview_' + count;
-                var lang = $(this)
-                    .attr('data-lang')
-                    .replace(' preview', '');
+                var lang = $(this).attr('data-lang').replace(' preview', '');
 
                 var content = $(this)
                     .attr('data-lang', lang)
@@ -66,10 +69,23 @@ export function docsifyDemo(hook, vm) {
                 `;
 
                 $(this).replaceWith(block);
+
+                //Adds in copy button
+                $(this)
+                    .find('pre')
+                    .each(function () {
+                        $(this).attr('id', codeId);
+                        var block = `
+                            <button 
+                                type="button" 
+                                class="demo-copy-code-button" 
+                                aria-controls="${codeId}">Copy</button>
+                        `;
+                        $(this).append(block);
+                    });
+                count++;
             });
 
-        count++;
-        console.log($(doc).html());
         next($(doc).html());
     });
 
@@ -118,6 +134,20 @@ export function docsifyDemo(hook, vm) {
                 $(this).html('View Source<i class="fas fa-angle-down"></i>');
             }
             $('#' + $(this).attr('aria-controls')).toggle();
+        });
+
+        //When you click the copy button, it plays an animation and copies the code
+        $('.demo-copy-code-button').click(function () {
+            copy($(this).parent().find('code').text());
+
+            $(this)
+                .addClass('copied')
+                .one(
+                    'animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd',
+                    function () {
+                        $(this).removeClass('copied');
+                    }
+                );
         });
     });
 }

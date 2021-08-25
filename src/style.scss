@@ -1,9 +1,5 @@
 @import '~material-colors/dist/colors';
 
-* {
-	box-sizing: border-box;
-}
-
 .demo_code pre {
 	margin: 0;
 	max-width: 100%;
@@ -12,12 +8,48 @@
 	border-top: solid 1px $md-grey-300;
 }
 
+.demo-copy-code-button {
+	position: absolute;
+	bottom: 4px;
+	right: 4px;
+	text-transform: uppercase;
+	padding: 8px;
+	user-select: none;
+	color: white;
+	background: $md-grey-700;
+	border: 0;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.demo-copy-code-button.copied {
+  animation: pulse 0.5s;
+  --pulse-color: rgb(var(--sl-color-neutral-600));
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 $md-grey-600;
+  }
+  70% {
+    box-shadow: 0 0 0 4px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+pre {
+	padding: .5rem;
+}
+
 code {
 	font-size: 0.9rem !important;
 }
 
 .demo {
-	overflow: hidden;
+	overflow: visible;
+	box-sizing: border-box;
 	border-top-right-radius: 3px;
 	position: relative;
 	margin-bottom: 1.5rem;
@@ -94,7 +126,7 @@ code {
 
 .demo_toggle:active,
 .demo_resize:active {
-	box-shadow: 0 0 0 1px $md-light-blue-100, 0 0 0 1px $md-light-blue-100 1px;
+	box-shadow: 0 0 0 1px $md-light-blue-100, 0 0 0 1px $md-light-blue-100;
 }
 
 @media screen and (max-width: 600px) {
