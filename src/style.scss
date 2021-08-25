@@ -1,0 +1,111 @@
+@import '~material-colors/dist/colors';
+
+* {
+	box-sizing: border-box;
+}
+
+.demo_code pre {
+	margin: 0;
+	max-width: 100%;
+	border-left: solid 1px $md-grey-300;
+	border-right: solid 1px $md-grey-300;
+	border-top: solid 1px $md-grey-300;
+}
+
+code {
+	font-size: 0.9rem !important;
+}
+
+.demo {
+	overflow: hidden;
+	border-top-right-radius: 3px;
+	position: relative;
+	margin-bottom: 1.5rem;
+	background: #fafafa;
+	min-width: 15rem;
+}
+
+.demo_preview {
+	border-top: solid 1px $md-grey-300;
+	border-left: solid 1px $md-grey-300;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	background: white;
+	position: relative;
+	padding: 1.5rem 3.25rem 1.5rem 1.5rem;
+	max-width: 100%;
+	min-width: 15rem;
+}
+
+.demo_resize {
+	color: #e4e4e7;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 1.75rem;
+	font-size: 10px;
+	color: $md-grey-600;
+	border: 1px solid $md-grey-300;
+	margin-top: -1px;
+	margin-bottom: -1px;
+	border-top-right-radius: 3px;
+	cursor: ew-resize;
+	transition: 250ms background-color;
+}
+
+.demo_button {
+	background: white;
+	position: relative;
+	display: flex;
+}
+
+.demo_button svg {
+	margin-left: 3px;
+}
+
+.demo_toggle {
+	border: solid 1px $md-grey-300;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	height: 2.5rem;
+	color: $md-grey-600;
+	position: relative;
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	cursor: pointer;
+	-webkit-appearance: none;
+	transition: 250ms background-color;
+}
+
+.demo_resize:active,
+.demo_toggle:hover {
+	z-index: 2;
+	background: $md-light-blue-50;
+	color: $md-light-blue-600;
+	border-color: $md-light-blue-300;
+}
+
+.demo_toggle:active,
+.demo_resize:active {
+	box-shadow: 0 0 0 1px $md-light-blue-100, 0 0 0 1px $md-light-blue-100 1px;
+}
+
+@media screen and (max-width: 600px) {
+	.demo_preview {
+		border-right: solid 1px $md-grey-300;
+		border-top-right-radius: 3px;
+		padding-right: 1.5rem;
+		width: 100rem;
+	}
+
+	.demo_resize {
+		display: none;
+	}
+}

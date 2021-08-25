@@ -1,0 +1,10 @@
+## System Files
+.DS_Store
+
+## Node
+/node_modules
+package-lock.json
+yarn.lock
+
+## Output
+/dist

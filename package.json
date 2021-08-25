@@ -1,0 +1,32 @@
+{
+  "name": "docsify-codepen",
+  "version": "0.1",
+  "description": "Plugin for Docsify that adds a preview of your component",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "debug=false node build.js",
+    "dev": "debug=true node build.js",
+    "test": "docsify serve example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JacobWeinbren/miliband-components.git"
+  },
+  "keywords": [
+    "docsify",
+    "preview",
+    "documentation"
+  ],
+  "author": "Jacob",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@weavedev/lit-fontawesome": "^0.3.2",
+    "docsify-cli": "^4.4.3",
+    "esbuild": "^0.12.22",
+    "esbuild-sass-plugin": "^1.5.2",
+    "jquery": "^3.6.0",
+    "material-colors": "^1.2.6"
+  }
+}
