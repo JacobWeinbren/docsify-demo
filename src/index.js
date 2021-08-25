@@ -20,10 +20,10 @@ export function docsifyDemo(hook, vm) {
     var count = 0;
 
     hook.afterEach(function (html, next) {
-        //Scans page and adds demo tags
         var doc = $('<div/>').html(html);
         var codeId = 'demo_code_' + count;
 
+        //Scans page and adds demo tags
         $(doc)
             .find('pre[data-lang="html preview"]')
             .each(function () {
@@ -69,23 +69,19 @@ export function docsifyDemo(hook, vm) {
                 `;
 
                 $(this).replaceWith(block);
-
-                //Adds in copy button
-                $(this)
-                    .find('pre')
-                    .each(function () {
-                        $(this).attr('id', codeId);
-                        var block = `
-                            <button 
-                                type="button" 
-                                class="demo-copy-code-button" 
-                                aria-controls="${codeId}">Copy</button>
-                        `;
-                        $(this).append(block);
-                    });
-                count++;
             });
 
+        //Adds in copy button
+        $(doc)
+            .find('pre')
+            .each(function () {
+                console.log('test');
+                $(this).attr('id', codeId);
+                var block = `<button type="button" class="demo-copy-code-button" aria-controls="${codeId}">Copy</button>`;
+                $(this).append(block);
+            });
+
+        count++;
         next($(doc).html());
     });
 
