@@ -21,12 +21,12 @@ NPM Publish to happen in 24 hours.
 
 1. Add the jsdelivr script
 ```html
-<script src="//index.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-demo@1.0.0/dist/index.min.js"></script>
 ```
 
 2. Add the jsdelivr styles
 ```html
-<link rel="stylesheet" href="/dist/index.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-demo@1.0.0/dist/index.min.css">
 ```
 
 3. Use the following markdown to add a component to your documentation
