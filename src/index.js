@@ -1,20 +1,21 @@
 import $ from 'jquery/dist/jquery.slim.js';
+import './style.scss';
+
+//For icons
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {
     faGripLinesVertical,
     faAngleDown,
     faAngleUp,
 } from '@fortawesome/free-solid-svg-icons';
-import './style.scss';
-
 library.add(faGripLinesVertical, faAngleDown, faAngleUp);
 dom.watch();
 
 export function docsifyDemo(hook, vm) {
     var count = 0;
 
-    //Scans page and adds demo tags
     hook.afterEach(function (html, next) {
+        //Scans page and adds demo tags
         var doc = $('<div/>').html(html);
 
         $(doc)
@@ -72,6 +73,7 @@ export function docsifyDemo(hook, vm) {
     });
 
     hook.ready(function () {
+        //Allows for dragging on component preview
         var dragging;
         var dragging_pos;
         var controls;
@@ -105,6 +107,7 @@ export function docsifyDemo(hook, vm) {
                 dragging = false;
             });
 
+        //When you click on the button, it retracts or reveals the code source
         $('.demo_toggle').click(function () {
             if ($(this).attr('aria-expanded') == 'false') {
                 $(this).attr('aria-expanded', 'true');
@@ -118,6 +121,7 @@ export function docsifyDemo(hook, vm) {
     });
 }
 
+//Adds plugin
 if (!window.$docsify) {
     throw new Error('Docsify is not loaded');
 } else {
