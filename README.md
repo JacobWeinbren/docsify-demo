@@ -8,6 +8,11 @@
 
 This plugin is focused on testing local code within [Docsify](https://docsify.js.org/#/), based on the [@shoelace](https://github.com/shoelace-style/shoelace) `code-block` implementation. Unlike other [docsify plugins](https://docsify.js.org/#/plugins) that exist, this plugin supports LitElement, more recently known as [Lit.Dev](https://lit.dev/). Similar to Storybook, this allows for testing common use cases, but in a simpler way.
 
+**Key Features**
+- A live preview of your component/s, which can be resized to emulate smaller devices
+- Each demo comes with a toggleable code view, which reveals the underlying code
+- For all the code previews, this plugin integrates a copy button feature
+
 This is my first plugin - please feel welcome to suggest features or raise bugs by creating an issue.
 
 ## Installation
