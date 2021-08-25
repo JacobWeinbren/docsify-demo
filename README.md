@@ -1,7 +1,7 @@
 # Docsify Demo 💻
 > Plugin for [Docsify](https://docsify.js.org/#/) 📘 that adds a preview of your component
 > 
-![Latest version on NPM](https://img.shields.io/npm/v/docsify-demo?color=blue&label=docsify-demo)
+[![Latest version on NPM](https://img.shields.io/npm/v/docsify-demo?color=blue&label=docsify-demo)](https://www.npmjs.com/package/docsify-demo)
 ![GitHub top language](https://img.shields.io/github/languages/top/JacobWeinbren/docsify-demo)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/JacobWeinbren/docsify-demo)
 ![MIT License](https://img.shields.io/github/license/JacobWeinbren/docsify-demo?color=blue)
@@ -16,8 +16,6 @@ This plugin is focused on testing local code within [Docsify](https://docsify.js
 This is my first plugin - please feel welcome to suggest features or raise bugs by creating an issue.
 
 ## Installation
-
-NPM Publish to happen in 24 hours.
 
 1. Add the jsdelivr script
 ```html
