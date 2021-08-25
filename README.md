@@ -25,8 +25,8 @@ NPM Publish to happen in 24 hours.
 ```
 
 3. Use the following markdown to add a component to your documentation
-```html preview
-    ```
+```html
+    ```html preview
     <p> Hello, World. </p>
     ```
 ```
