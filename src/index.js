@@ -32,12 +32,12 @@ export function docsifyDemo(hook, vm) {
                 var previewId = 'demo_preview_' + count;
                 var lang = $(this)
                     .attr('data-lang')
-                    .replace(/ preview$/, '');
+                    .replace(' preview', '');
 
-                $(this)
+                var content = $(this)
                     .attr('data-lang', lang)
                     .attr('aria-labelledby', toggleId)
-                    .attr('id', previewId);
+                    .attr('id', previewId)[0].outerHTML;
 
                 var block = `
                     <div class="demo">
@@ -69,6 +69,7 @@ export function docsifyDemo(hook, vm) {
             });
 
         count++;
+        console.log($(doc).html());
         next($(doc).html());
     });
 
