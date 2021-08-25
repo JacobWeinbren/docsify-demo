@@ -26,7 +26,7 @@ This is my first plugin - please feel welcome to suggest features or raise bugs 
 
 4. This is what it should look like
 
-![Demo Screenshot, showing a toggle bar, reveal button and preview box](preview.png)
+![Demo Screenshot, showing a toggle bar, reveal button and preview box](screenshot.png)
 
 
 ## Example
