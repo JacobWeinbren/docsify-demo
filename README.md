@@ -26,7 +26,7 @@ This is my first plugin - please feel welcome to suggest features or raise bugs 
 
 4. This is what it should look like
 
-<img src="screenshot.png" width="200" alt="Demo Screenshot, showing a toggle bar, reveal button and preview box" />
+<img src="screenshot.png" width="500px" alt="Demo Screenshot, showing a toggle bar, reveal button and preview box" />
 
 ## Example
 
