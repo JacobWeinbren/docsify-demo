@@ -7,14 +7,16 @@ This is my first plugin - please feel welcome to suggest features or raise bugs 
 
 ## Installation
 
-1. Add the unpkg script
+NPM Publish to happen in 24 hours.
+
+1. Add the jsdelivr script
 ```html
-<script src="//unpkg.com/docsify-share/build/index.min.js"></script>
+<script src="//index.min.js"></script>
 ```
 
-2. Add the unpkg styles
+2. Add the jsdelivr styles
 ```html
-<script src="//unpkg.com/docsify-share/build/index.min.js"></script>
+<link rel="stylesheet" href="/dist/index.min.css">
 ```
 
 3. Use the following markdown to add a component to your documentation
