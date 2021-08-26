@@ -1,13 +1,6 @@
 @import "~material-colors/dist/colors";
 
-.demo_code pre {
-    margin: 0;
-    max-width: 100%;
-    border-left: solid 1px $md-grey-300;
-    border-right: solid 1px $md-grey-300;
-    border-top: solid 1px $md-grey-300;
-}
-
+//Sets up button
 .demo-copy-code-button {
     position: absolute;
     bottom: 4px;
@@ -45,10 +38,19 @@ pre:hover .demo-copy-code-button {
     }
 }
 
-pre {
-    padding: 0.5rem;
-    word-wrap: break-word;
-    font-size: 0.9rem !important;
+//Improves code defaults
+code {
+    font-size: 14px !important;
+    padding: 16px !important;
+}
+
+//Controls code
+.demo_code pre {
+    margin: 0;
+    max-width: 100%;
+    border-left: solid 1px $md-grey-300;
+    border-right: solid 1px $md-grey-300;
+    border-top: solid 1px $md-grey-300;
 }
 
 pre,
@@ -56,6 +58,7 @@ pre,
     overflow: scroll;
 }
 
+//Style for demo container
 .demo {
     overflow: visible;
     box-sizing: border-box;
@@ -138,6 +141,7 @@ pre,
     box-shadow: 0 0 0 1px $md-light-blue-100, 0 0 0 1px $md-light-blue-100;
 }
 
+//For smaller screens
 @media screen and (max-width: 600px) {
     .demo_preview {
         border-right: solid 1px $md-grey-300;
