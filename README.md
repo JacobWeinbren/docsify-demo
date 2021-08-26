@@ -4,8 +4,7 @@
 
 [![Latest version on NPM](https://img.shields.io/npm/v/docsify-demo?color=blue&label=docsify-demo)](https://www.npmjs.com/package/docsify-demo)
 ![GitHub top language](https://img.shields.io/github/languages/top/JacobWeinbren/docsify-demo)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/JacobWeinbren/docsify-demo)
-[MIT License](https://img.shields.io/github/license/JacobWeinbren/docsify-demo?color=blue)
+![MIT License](https://img.shields.io/github/license/JacobWeinbren/docsify-demo?color=blue)
 
 This plugin is focused on testing local code within [Docsify](https://docsify.js.org/#/), based on the [@shoelace](https://github.com/shoelace-style/shoelace) `code-block` implementation. Unlike other [docsify plugins](https://docsify.js.org/#/plugins) that exist, this plugin supports LitElement, more recently known as [Lit.Dev](https://lit.dev/). Similar to Storybook, this allows for testing common use cases, but in a simpler way.
 
