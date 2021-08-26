@@ -2,12 +2,12 @@
 
 ```html preview
 <div>
-    <p> Hello, World. </p>
+    <p>Hello, World.</p>
 </div>
 ```
 
 ```html
 <div>
-    <p> Hello, World. </p>
+    <p>Another example too.</p>
 </div>
 ```

@@ -1,4 +1,4 @@
-@import '~material-colors/dist/colors';
+@import "~material-colors/dist/colors";
 
 .demo_code pre {
     margin: 0;
@@ -47,10 +47,13 @@ pre:hover .demo-copy-code-button {
 
 pre {
     padding: 0.5rem;
+    word-wrap: break-word;
+    font-size: 0.9rem !important;
 }
 
-code {
-    font-size: 0.9rem !important;
+pre,
+.demo_preview_content {
+    overflow: scroll;
 }
 
 .demo {

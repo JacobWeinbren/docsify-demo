@@ -1,5 +1,5 @@
-const esbuild = require('esbuild');
-const sassPlugin = require('esbuild-sass-plugin').sassPlugin;
+const esbuild = require("esbuild");
+const sassPlugin = require("esbuild-sass-plugin").sassPlugin;
 
 //On Watch
 if (process.env.debug == "true") {
@@ -13,11 +13,13 @@ if (process.env.debug == "true") {
     var watch = false;
 }
 
-esbuild.build({
-    entryPoints: ['src/index.js'],
-    bundle: true,
-    minify: true,
-    outfile: 'dist/index.min.js',
-    plugins: [sassPlugin()],
-    watch: watch
-}).catch((e) => console.error(e.message))
+esbuild
+    .build({
+        entryPoints: ["src/index.js"],
+        bundle: true,
+        minify: true,
+        outfile: "dist/index.min.js",
+        plugins: [sassPlugin()],
+        watch: watch,
+    })
+    .catch((e) => console.error(e.message));
