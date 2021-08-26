@@ -10,7 +10,7 @@ This plugin is focused on testing local code within [Docsify](https://docsify.js
 
 **Key Features**
 
--   A live preview of your component/s, which can be resized to emulate smaller devices
+-   A live preview of your component/s, which can be resized to simulate smaller devices
 -   Each demo comes with a toggleable code view, which reveals the underlying code
 -   For all the code previews, this plugin integrates a copy button feature
 
