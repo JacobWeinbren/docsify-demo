@@ -47,8 +47,8 @@ export function docsifyDemo(hook, vm) {
 
                     var demo = `
                         <div class="demo">
-                            <div class="demo_preview" id="${previewId}">
-                                <div class="demo_preview_content">
+                            <div class="demo_preview">
+                                <div class="demo_preview_content" id="${previewId}">
                                     ${data}
                                 </div>
                                 <div class="demo_resize" aria-controls="${previewId}" role="slider" tabindex="0">
@@ -103,11 +103,12 @@ export function docsifyDemo(hook, vm) {
             .mousemove(function (ex) {
                 if (dragging) {
                     if (ex.pageX != dragging_pos) {
+                        var sized_element = $("#" + controls).parent();
                         var change = ex.pageX - dragging_pos;
                         var new_width =
-                            parseInt($("#" + controls).css("width"), 10) +
+                            parseInt($(sized_element).css("width"), 10) +
                             change;
-                        $("#" + controls).css("width", new_width);
+                        $(sized_element).css("width", new_width);
                         dragging_pos = ex.pageX;
                     }
                 }
