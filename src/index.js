@@ -1,4 +1,3 @@
-import $ from "jquery/dist/jquery.slim.js";
 import "./style.scss";
 import * as clipboard from "clipboard-polyfill/text";
 
@@ -20,32 +19,42 @@ export function docsifyDemo(hook, vm) {
     var count = 0;
 
     hook.afterEach(function (html, next) {
-        var doc = $("<div/>").html(html);
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, "text/html");
 
         //Scans page and adds demo tags
-        $(doc)
-            .find("pre")
-            .each(function () {
-                var codeId = "demo_code_" + count;
-                var copy_button = `<button type="button" class="demo-copy-code-button" aria-controls="${codeId}">Copy</button>`;
+        var pre_list = doc.querySelectorAll("pre");
+        var pre_array = [...pre_list];
 
-                //Adds in demo preview
-                if ($(this).attr("data-lang") == "html preview") {
-                    var data = $(this).text();
+        pre_array.forEach((element) => {
+            //Handles Copy Button
+            var codeId = "demo_code_" + count;
+            var copy_button = document.createElement("div");
+            copy_button.innerHTML =
+                `<button type="button" class="demo-copy-code-button" aria-controls="${codeId}">Copy</button>`.trim();
+            copy_button = copy_button.firstChild;
 
-                    var content = $(this)[0].outerHTML;
-                    var toggleId = "demo_toggle_" + count;
-                    var previewId = "demo_preview_" + count;
-                    var lang = $(this)
-                        .attr("data-lang")
-                        .replace(" preview", "");
+            //Adds in demo preview
+            if (element.getAttribute("data-lang") == "html preview") {
+                var data = element.innerText;
 
-                    var content = $(this)
-                        .attr("data-lang", lang)
-                        .attr("aria-labelledby", toggleId)
-                        .append(copy_button)[0].outerHTML;
+                var content = element.outerHTML;
+                var toggleId = "demo_toggle_" + count;
+                var previewId = "demo_preview_" + count;
 
-                    var demo = `
+                //Replaces language
+                var lang = element
+                    .getAttribute("data-lang")
+                    .replace(" preview", "");
+
+                var content = element.cloneNode(true);
+                content.setAttribute("data-lang", lang);
+                content.setAttribute("aria-labelledby", toggleId);
+                content.append(copy_button);
+
+                //Creates demo
+                var demo = document.createElement("div");
+                demo.innerHTML = `
                         <div class="demo">
                             <div class="demo_preview">
                                 <div class="demo_preview_content" id="${previewId}">
@@ -60,7 +69,7 @@ export function docsifyDemo(hook, vm) {
                                 class="demo_code" 
                                 id="${codeId}" 
                                 style="display: none;">
-                                ${content}
+                                ${content.outerHTML}
                             </div>
                             
                             <div class="demo_button">
@@ -70,18 +79,21 @@ export function docsifyDemo(hook, vm) {
                             </button>
                             </div>
                         </div>
-                    `;
+                    `.trim();
+                demo = demo.firstChild;
 
-                    $(this).replaceWith(demo);
-                } else {
-                    $(this).attr("id", codeId).append(copy_button);
-                }
+                element.replaceWith(demo);
+            } else {
+                //If outside demo
+                element.id = codeId;
+                element.append(copy_button);
+            }
 
-                //Updates id count
-                count++;
-            });
+            //Updates id count
+            count++;
+        });
 
-        next($(doc).html());
+        next(doc.body.innerHTML);
     });
 
     hook.doneEach(function () {
@@ -90,60 +102,76 @@ export function docsifyDemo(hook, vm) {
         var dragging_pos;
         var controls;
 
-        $(document)
-            .mousedown(function (e) {
-                if ($(e.target).closest(".demo_resize").length != 0) {
-                    dragging = true;
+        document.addEventListener("mousedown", (e) => {
+            var element = e.target;
+            if (element.className == "demo_resize") {
+                dragging = true;
+            }
+            dragging_pos = e.pageX;
+            controls = element.getAttribute("aria-controls");
+            e.preventDefault();
+        });
+        document.addEventListener("mousemove", (e) => {
+            if (dragging) {
+                if (e.pageX != dragging_pos) {
+                    var element =
+                        document.getElementById(controls).parentElement;
+                    var change = e.pageX - dragging_pos;
+                    var new_width = element.offsetWidth + change;
+                    element.style.width = new_width + "px";
+                    dragging_pos = e.pageX;
                 }
-
-                dragging_pos = e.pageX;
-                controls = $(e.target).attr("aria-controls");
-                e.preventDefault();
-            })
-            .mousemove(function (ex) {
-                if (dragging) {
-                    if (ex.pageX != dragging_pos) {
-                        var sized_element = $("#" + controls).parent();
-                        var change = ex.pageX - dragging_pos;
-                        var new_width =
-                            parseInt($(sized_element).css("width"), 10) +
-                            change;
-                        $(sized_element).css("width", new_width);
-                        dragging_pos = ex.pageX;
-                    }
-                }
-            })
-            .mouseup(function () {
-                dragging = false;
-            })
-            .mouseleave(function () {
-                dragging = false;
-            });
+            }
+        });
+        document.addEventListener("mouseup", (e) => {
+            dragging = false;
+        });
+        document.addEventListener("mouseleave", (e) => {
+            dragging = false;
+        });
 
         //When you click on the button, it retracts or reveals the code source
-        $(".demo_toggle").click(function () {
-            if ($(this).attr("aria-expanded") == "false") {
-                $(this).attr("aria-expanded", "true");
-                $(this).html('Hide Source<i class="fas fa-angle-up"></i>');
+        const demo_toggle = document.querySelector(".demo_toggle");
+
+        demo_toggle.addEventListener("click", (e) => {
+            var element = e.target;
+            if (element.getAttribute("data-lang") == "false") {
+                element.setAttribute("aria-expanded", "true");
+                element.innerHTML =
+                    'Hide Source<i class="fas fa-angle-up"></i>';
             } else {
-                $(this).attr("aria-expanded", "false");
-                $(this).html('View Source<i class="fas fa-angle-down"></i>');
+                element.setAttribute("aria-expanded", "false");
+                element.innerHTML =
+                    'View Source<i class="fas fa-angle-down"></i>';
             }
-            $("#" + $(this).attr("aria-controls")).toggle();
+
+            var code_id = element.getAttribute("aria-controls");
+            var code_element = document.getElementById(code_id);
+            code_element.style.display =
+                code_element.style.display == "none" ? "block" : "none";
         });
 
         //When you click the copy button, it plays an animation and copies the code
-        $(".demo-copy-code-button").click(function () {
-            copy($(this).parent().find("code").text());
+        const copy_button = document.querySelector(".demo-copy-code-button");
+        copy_button.addEventListener("click", (e) => {
+            var element = e.target;
+            copy(element.parentElement.querySelector("code").innerText);
 
-            $(this)
-                .addClass("copied")
-                .one(
-                    "animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
-                    function () {
-                        $(this).removeClass("copied");
-                    }
-                );
+            element.className += " copied";
+
+            //Browser support
+            function removeClass() {
+                element.className = "demo-copy-code-button";
+                element.removeEventListener("webkitAnimationEnd", removeClass);
+                element.removeEventListener("oAnimationEnd", removeClass);
+                element.removeEventListener("MSAnimationEnd", removeClass);
+                element.removeEventListener("animationend", removeClass);
+            }
+
+            element.addEventListener("webkitAnimationEnd", removeClass, false);
+            element.addEventListener("oAnimationEnd", removeClass, false);
+            element.addEventListener("MSAnimationEnd", removeClass, false);
+            element.addEventListener("animationend", removeClass, false);
         });
     });
 }

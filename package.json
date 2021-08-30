@@ -35,7 +35,6 @@
         "docsify-cli": "^4.4.3",
         "esbuild": "^0.12.22",
         "esbuild-sass-plugin": "^1.5.2",
-        "jquery": "^3.6.0",
         "material-colors": "^1.2.6"
     }
 }
