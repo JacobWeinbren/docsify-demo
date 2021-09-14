@@ -131,47 +131,61 @@ export function docsifyDemo(hook, vm) {
         });
 
         //When you click on the button, it retracts or reveals the code source
-        const demo_toggle = document.querySelector(".demo_toggle");
+        const demo_toggle_list = document.querySelectorAll(".demo_toggle");
+        var demo_toggle_array = [...demo_toggle_list];
 
-        demo_toggle.addEventListener("click", (e) => {
-            var element = e.target;
-            if (element.getAttribute("data-lang") == "false") {
-                element.setAttribute("aria-expanded", "true");
-                element.innerHTML =
-                    'Hide Source<i class="fas fa-angle-up"></i>';
-            } else {
-                element.setAttribute("aria-expanded", "false");
-                element.innerHTML =
-                    'View Source<i class="fas fa-angle-down"></i>';
-            }
+        demo_toggle_array.forEach((element) => {
+            element.addEventListener("click", (e) => {
+                if (element.getAttribute("data-lang") == "false") {
+                    element.setAttribute("aria-expanded", "true");
+                    element.innerHTML =
+                        'Hide Source<i class="fas fa-angle-up"></i>';
+                } else {
+                    element.setAttribute("aria-expanded", "false");
+                    element.innerHTML =
+                        'View Source<i class="fas fa-angle-down"></i>';
+                }
 
-            var code_id = element.getAttribute("aria-controls");
-            var code_element = document.getElementById(code_id);
-            code_element.style.display =
-                code_element.style.display == "none" ? "block" : "none";
+                var code_id = element.getAttribute("aria-controls");
+                var code_element = document.getElementById(code_id);
+                code_element.style.display =
+                    code_element.style.display == "none" ? "block" : "none";
+            });
         });
 
         //When you click the copy button, it plays an animation and copies the code
-        const copy_button = document.querySelector(".demo-copy-code-button");
-        copy_button.addEventListener("click", (e) => {
-            var element = e.target;
-            copy(element.parentElement.querySelector("code").innerText);
+        const copy_button_list = document.querySelectorAll(
+            ".demo-copy-code-button"
+        );
+        var copy_button_array = [...copy_button_list];
 
-            element.className += " copied";
+        copy_button_array.forEach((element) => {
+            element.addEventListener("click", (e) => {
+                copy(element.parentElement.querySelector("code").innerText);
 
-            //Browser support
-            function removeClass() {
-                element.className = "demo-copy-code-button";
-                element.removeEventListener("webkitAnimationEnd", removeClass);
-                element.removeEventListener("oAnimationEnd", removeClass);
-                element.removeEventListener("MSAnimationEnd", removeClass);
-                element.removeEventListener("animationend", removeClass);
-            }
+                element.className += " copied";
 
-            element.addEventListener("webkitAnimationEnd", removeClass, false);
-            element.addEventListener("oAnimationEnd", removeClass, false);
-            element.addEventListener("MSAnimationEnd", removeClass, false);
-            element.addEventListener("animationend", removeClass, false);
+                //Browser support
+                function removeClass() {
+                    element.className = "demo-copy-code-button";
+                    element.removeEventListener(
+                        "webkitAnimationEnd",
+                        removeClass
+                    );
+                    element.removeEventListener("oAnimationEnd", removeClass);
+                    element.removeEventListener("MSAnimationEnd", removeClass);
+                    element.removeEventListener("animationend", removeClass);
+                }
+
+                element.addEventListener(
+                    "webkitAnimationEnd",
+                    removeClass,
+                    false
+                );
+                element.addEventListener("oAnimationEnd", removeClass, false);
+                element.addEventListener("MSAnimationEnd", removeClass, false);
+                element.addEventListener("animationend", removeClass, false);
+            });
         });
     });
 }
