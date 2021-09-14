@@ -136,7 +136,7 @@ export function docsifyDemo(hook, vm) {
 
         demo_toggle_array.forEach((element) => {
             element.addEventListener("click", (e) => {
-                if (element.getAttribute("data-lang") == "false") {
+                if (element.getAttribute("aria-expanded") == "false") {
                     element.setAttribute("aria-expanded", "true");
                     element.innerHTML =
                         'Hide Source<i class="fas fa-angle-up"></i>';
