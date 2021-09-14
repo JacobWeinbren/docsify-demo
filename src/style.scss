@@ -1,5 +1,11 @@
 @import "~material-colors/dist/colors";
 
+//Docsify themeable
+:root {
+    --code-block-border-radius: 0;
+    --code-block-margin: 0;
+}
+
 //Sets up button
 .demo-copy-code-button {
     position: absolute;
@@ -40,8 +46,8 @@ pre:hover .demo-copy-code-button {
 
 //Improves code defaults
 code {
-    font-size: 14px !important;
-    padding: 16px !important;
+    font-size: 14px;
+    padding: 16px;
 }
 
 //Controls code
