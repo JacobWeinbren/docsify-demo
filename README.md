@@ -3,6 +3,7 @@
 > Plugin for [Docsify](https://docsify.js.org/#/) 📘 that adds a preview of your component
 
 [![Latest version on NPM](https://img.shields.io/npm/v/docsify-demo?color=blue&label=docsify-demo)](https://www.npmjs.com/package/docsify-demo)
+![NPM bundle size](https://img.shields.io/bundlephobia/min/docsify-demo)
 ![GitHub top language](https://img.shields.io/github/languages/top/JacobWeinbren/docsify-demo)
 ![MIT License](https://img.shields.io/github/license/JacobWeinbren/docsify-demo?color=blue)
 
