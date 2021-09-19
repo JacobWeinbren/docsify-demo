@@ -5,15 +5,26 @@ function copy(text) {
     clipboard.writeText(text);
 }
 
-//Adding in icons
-import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import {
-    faGripLinesVertical,
-    faAngleDown,
-    faAngleUp,
-} from "@fortawesome/free-solid-svg-icons";
-library.add(faGripLinesVertical, faAngleDown, faAngleUp);
-dom.watch();
+//https://icons.getbootstrap.com/icons/caret-down-fill/
+const CaretDown = `
+    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+    </svg>
+`;
+
+//https://icons.getbootstrap.com/icons/caret-up-fill/
+const CaretUp = `
+    <svg aria-hidden="true"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+        <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+    </svg>
+`;
+
+//https://icons.getbootstrap.com/icons/grip-vertical/
+const GripVertical = `
+    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grip-vertical" viewBox="0 0 16 16">
+        <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+`;
 
 export function docsifyDemo(hook, vm) {
     var count = 0;
@@ -61,7 +72,7 @@ export function docsifyDemo(hook, vm) {
                                     ${data}
                                 </div>
                                 <div class="demo_resize" aria-controls="${previewId}" role="slider" tabindex="0">
-                                    <i class="fas fa-grip-lines-vertical"></i>
+                                    ${GripVertical}
                                 </div>
                             </div>
                             
@@ -75,7 +86,7 @@ export function docsifyDemo(hook, vm) {
                             <div class="demo_button">
                             <button type="button" class="demo_button demo_toggle" id="${toggleId}" aria-expanded="false" aria-controls="${codeId}">
                                 View Source
-                                <i class="fas fa-angle-down"></i>
+                                ${CaretDown}
                             </button>
                             </div>
                         </div>
@@ -107,10 +118,14 @@ export function docsifyDemo(hook, vm) {
             if (element.className == "demo_resize") {
                 dragging = true;
             }
+            if (element.className.baseVal == "bi bi-grip-vertical") {
+                element = element.parentElement;
+                dragging = true;
+            }
             dragging_pos = e.pageX;
             controls = element.getAttribute("aria-controls");
-            e.preventDefault();
         });
+
         document.addEventListener("mousemove", (e) => {
             if (dragging) {
                 if (e.pageX != dragging_pos) {
@@ -123,27 +138,27 @@ export function docsifyDemo(hook, vm) {
                 }
             }
         });
+
         document.addEventListener("mouseup", (e) => {
             dragging = false;
         });
+
         document.addEventListener("mouseleave", (e) => {
             dragging = false;
         });
 
         //When you click on the button, it retracts or reveals the code source
         const demo_toggle_list = document.querySelectorAll(".demo_toggle");
-        var demo_toggle_array = [...demo_toggle_list];
+        const demo_toggle_array = [...demo_toggle_list];
 
         demo_toggle_array.forEach((element) => {
             element.addEventListener("click", (e) => {
                 if (element.getAttribute("aria-expanded") == "false") {
                     element.setAttribute("aria-expanded", "true");
-                    element.innerHTML =
-                        'Hide Source<i class="fas fa-angle-up"></i>';
+                    element.innerHTML = `Hide Source${CaretUp}`;
                 } else {
                     element.setAttribute("aria-expanded", "false");
-                    element.innerHTML =
-                        'View Source<i class="fas fa-angle-down"></i>';
+                    element.innerHTML = `View Source${CaretDown}`;
                 }
 
                 var code_id = element.getAttribute("aria-controls");

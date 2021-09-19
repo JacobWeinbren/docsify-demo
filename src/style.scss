@@ -1,5 +1,9 @@
 @import "~material-colors/dist/colors";
 
+* {
+    box-sizing: border-box;
+}
+
 //Docsify themeable
 :root {
     --code-block-border-radius: 0;
@@ -50,6 +54,15 @@ code {
     padding: 16px;
 }
 
+.markdown-section pre {
+    padding: 0 1.5rem;
+}
+
+.markdown-section pre > code {
+    padding: 2.2em 0;
+    margin: 0;
+}
+
 //Controls code
 .demo_code pre {
     margin: 0;
@@ -70,21 +83,24 @@ pre,
     box-sizing: border-box;
     border-top-right-radius: 3px;
     position: relative;
-    margin-bottom: 1.5rem;
     background: #fafafa;
     min-width: 20rem;
+    margin: 1.5rem;
 }
 
 .demo_preview {
+    padding: 0 3.25rem 0 1.5rem;
     border-top: solid 1px $md-grey-300;
     border-left: solid 1px $md-grey-300;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     background: white;
     position: relative;
-    padding: 0 3.25rem 0 1.5rem;
-    max-width: 100%;
     min-width: 20rem;
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
 }
 
 .demo_resize {
@@ -114,7 +130,7 @@ pre,
 }
 
 .demo_button svg {
-    margin-left: 3px;
+    height: 9px;
 }
 
 .demo_toggle {
@@ -128,7 +144,6 @@ pre,
     flex: 1 1 auto;
     align-items: center;
     justify-content: center;
-    width: 100%;
     cursor: pointer;
     -webkit-appearance: none;
     transition: 250ms background-color;

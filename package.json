@@ -1,12 +1,12 @@
 {
     "name": "docsify-demo",
-    "version": "1.9.0",
+    "version": "2.0.0",
     "description": "Plugin for Docsify that adds a preview of your component",
     "main": "dist/index.min.js",
     "scripts": {
-        "build": "debug=false node build.js",
-        "dev": "debug=true node build.js",
-        "serve": "docsify serve example"
+        "build": "rollup -c",
+        "dev": "rollup -c -w",
+        "serve": "docsify serve ./docs"
     },
     "repository": {
         "type": "git",
@@ -28,13 +28,20 @@
     "author": "Jacob",
     "license": "MIT",
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.36",
-        "@fortawesome/free-solid-svg-icons": "^5.15.4",
-        "@weavedev/lit-fontawesome": "^0.3.2",
+        "@babel/core": "^7.15.5",
+        "@babel/preset-env": "^7.15.6",
+        "@rollup/plugin-babel": "^5.3.0",
+        "@rollup/plugin-commonjs": "^20.0.0",
+        "@rollup/plugin-node-resolve": "^13.0.4",
+        "autoprefixer": "^10.3.4",
         "clipboard-polyfill": "^3.0.3",
         "docsify-cli": "^4.4.3",
         "esbuild": "^0.12.22",
-        "esbuild-sass-plugin": "^1.5.2",
-        "material-colors": "^1.2.6"
+        "material-colors": "^1.2.6",
+        "postcss": "^8.3.6",
+        "rollup": "^2.56.3",
+        "rollup-plugin-esbuild": "^4.5.0",
+        "rollup-plugin-postcss": "^4.0.1",
+        "sass": "^1.41.1"
     }
 }
