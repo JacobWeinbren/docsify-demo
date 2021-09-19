@@ -1,6 +1,6 @@
 {
     "name": "docsify-demo",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "Plugin for Docsify that adds a preview of your component",
     "main": "dist/index.min.js",
     "scripts": {
