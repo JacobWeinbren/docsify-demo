@@ -1,2 +1,1 @@
 -   [Home](/)
--   [Empty](empty.md)
