@@ -1,6 +1,11 @@
 @import "~material-colors/dist/colors";
 
-* {
+.demo-copy-code-button,
+.demo_code .demo,
+.demo_preview,
+.demo_button,
+.demo_toggle,
+.demo_resize {
     box-sizing: border-box;
 }
 
